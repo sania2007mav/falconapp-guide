@@ -29,10 +29,8 @@
         linear-gradient(180deg, #0b1016, var(--bg) 40%, #101820);
       line-height: 1.55;
     }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    .brand {
-      display: flex; align-items: center; gap: .85rem; margin-bottom: 1.5rem;
-    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .brand { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.25rem; }
     .mark {
       width: 48px; height: 48px; border-radius: 14px;
       display: grid; place-items: center;
@@ -45,11 +43,17 @@
       margin: 0 0 .35rem; letter-spacing: .01em;
     }
     .sub { color: var(--muted); margin: 0; }
+    .ctas { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.1rem 0 1.75rem; }
     .cta {
       display: inline-flex; align-items: center; gap: .5rem;
-      margin: 1.25rem 0 2rem; padding: .75rem 1.2rem;
-      border-radius: 999px; text-decoration: none; font-weight: 700; color: #1a1205;
+      padding: .7rem 1.15rem; border-radius: 999px;
+      text-decoration: none; font-weight: 700; color: #1a1205;
       background: linear-gradient(135deg, var(--accent), #d4882a);
+    }
+    .cta.ghost {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--line);
     }
     section {
       background: rgba(26,39,52,.82);
@@ -66,7 +70,7 @@
     ul, ol { margin: .4rem 0 .6rem; padding-left: 1.2rem; }
     li { margin: .35rem 0; }
     .muted { color: var(--muted); }
-    code, .code {
+    code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: .88em;
       background: rgba(0,0,0,.28);
@@ -89,13 +93,16 @@
     }
     .grid2 {
       display: grid; gap: .75rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     .card {
       border: 1px solid var(--line); border-radius: 12px; padding: .85rem .95rem;
       background: rgba(15,23,31,.45);
     }
     .card strong { display: block; margin-bottom: .25rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th, td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
     footer { margin-top: 2rem; color: var(--muted); font-size: .85rem; }
     a { color: var(--teal); }
   </style>
@@ -106,90 +113,125 @@
       <div class="mark">F</div>
       <div>
         <h1>FalconApp</h1>
-        <p class="sub">Каталог номенклатуры и заказы клиентов из 1С:УТ</p>
+        <p class="sub">Каталог, заказы, аналитика и Telegram-отчёты из 1С:УТ</p>
       </div>
     </div>
-    <a class="cta" href="https://falconapp.melnichuk.kz/" target="_blank" rel="noopener">Открыть приложение →</a>
+    <div class="ctas">
+      <a class="cta" href="https://falconapp.melnichuk.kz/" target="_blank" rel="noopener">Открыть приложение →</a>
+      <a class="cta ghost" href="https://t.me/FalconLogistic_bot" target="_blank" rel="noopener">Telegram-бот</a>
+      <a class="cta ghost" href="https://t.me/+qJ8J_ZgM9Ck4ZGVi" target="_blank" rel="noopener">Канал FalconApp</a>
+    </div>
 
     <section>
       <h2>Возможности</h2>
       <div class="grid2">
-        <div class="card"><strong>Каталог папками</strong><span class="muted">Навигация как в 1С, хлебные крошки, поиск по названию / коду / артикулу</span></div>
-        <div class="card"><strong>Остатки и цены</strong><span class="muted">По складам и видам цен, фильтр «только с остатком»</span></div>
-        <div class="card"><strong>Карточка товара</strong><span class="muted">Фото, цена, остатки, кнопка «В заказ»</span></div>
-        <div class="card"><strong>Штрихкод</strong><span class="muted">Сканер камерой или ручной ввод → сразу карточка позиции</span></div>
-        <div class="card"><strong>Заказ покупателя</strong><span class="muted">Партнёр, склад, вид цены, корзина, создание документа в 1С</span></div>
-        <div class="card"><strong>Показатели партнёра</strong><span class="muted">ИИН/БИН, задолженность, сумма покупок, дата создания</span></div>
-        <div class="card"><strong>Мобильная версия</strong><span class="muted">Карточки, нижние вкладки, бейдж корзины</span></div>
+        <div class="card"><strong>Обзор остатков</strong><span class="muted">KPI, диаграммы складов и топ-10, алерты низких остатков</span></div>
+        <div class="card"><strong>Дашборды</strong><span class="muted">Выручка, менеджеры, топы, ABC, дебиторка, склад</span></div>
+        <div class="card"><strong>Каталог</strong><span class="muted">Папки, поиск, цены, остатки, избранное ★</span></div>
+        <div class="card"><strong>Штрихкод</strong><span class="muted">Камера или ручной ввод → карточка товара</span></div>
+        <div class="card"><strong>Заказы</strong><span class="muted">История из 1С, детали строк, печать</span></div>
+        <div class="card"><strong>Заказ покупателя</strong><span class="muted">Партнёр, корзина, создание в 1С, печать</span></div>
+        <div class="card"><strong>Партнёр</strong><span class="muted">ИИН/БИН, долг, покупки, мини-график</span></div>
+        <div class="card"><strong>Telegram</strong><span class="muted">Утренний снимок и отчёты по командам / в канал</span></div>
       </div>
     </section>
 
     <section>
-      <h2>Как пользоваться</h2>
-      <h3>1. Номенклатура</h3>
+      <h2>Как пользоваться сайтом</h2>
+      <h3>1. Обзор</h3>
       <ol>
-        <li>Откройте вкладку <strong>Номенклатура</strong> (на телефоне — «Каталог»).</li>
-        <li>Выберите <strong>склад</strong> и <strong>вид цены</strong> в фильтрах.</li>
-        <li>Заходите в папки или ищите через строку поиска.</li>
-        <li>Нажмите на название товара — откроется карточка с фото и остатками.</li>
-        <li>Кнопка <strong>В заказ</strong> добавляет позицию в корзину.</li>
+        <li>Вкладка <strong>Обзор</strong> — остатки: KPI и графики.</li>
+        <li>Склад и порог алерта фильтруют «Низкие остатки».</li>
+        <li>Избранное (★ в каталоге) и недавние товары — внизу экрана.</li>
       </ol>
-      <h3>2. Штрихкод</h3>
+      <h3>2. Дашборды</h3>
       <ol>
-        <li>Нажмите иконку штрихкода справа от поиска.</li>
-        <li>Наведите камеру на код <em>или</em> введите цифры вручную → <strong>Найти</strong>.</li>
-        <li>Если товар найден — откроется его карточка. Если нет — сообщение «не найдена».</li>
+        <li>Вкладка <strong>Дашборды</strong> — меню слева.</li>
+        <li>Выручка: по дням / месяцам / годам / менеджерам.</li>
+        <li>Продажи: топ клиентов и номенклатуры, ABC, дебиторка, месяц vs месяц.</li>
+        <li>Склад: мёртвый сток, дефицит, сравнение складов.</li>
+        <li>Первая загрузка может занять до минуты (данные из 1С), дальше — кэш.</li>
       </ol>
-      <p class="muted">Тестовый штрихкод: <code>4600987009506</code> (Аквафор-Престиж).</p>
-      <h3>3. Заказ покупателя</h3>
+      <h3>3. Номенклатура и штрихкод</h3>
       <ol>
-        <li>Вкладка <strong>Заказ</strong>.</li>
-        <li>Найдите и выберите <strong>партнёра</strong> — появятся ИИН/БИН, долг, покупки.</li>
-        <li>Укажите склад отгрузки и вид цены.</li>
-        <li>Проверьте количество в корзине (остаток на выбранном складе подсвечивается).</li>
-        <li><strong>Создать заказ в 1С</strong> — появится номер документа.</li>
+        <li>Папки, поиск, фильтры склада и вида цены.</li>
+        <li>★ — в избранное; клик по названию — карточка.</li>
+        <li>Иконка штрихкода: камера или ручной ввод.</li>
+      </ol>
+      <p class="muted">Тест: <code>4600987009506</code> → Аквафор-Престиж.</p>
+      <h3>4. Заказы и заказ покупателя</h3>
+      <ol>
+        <li><strong>Заказы</strong> — список из 1С, клик → строки, печать.</li>
+        <li><strong>Заказ</strong> — партнёр, склад, корзина → создать в 1С → печать.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Telegram-бот</h2>
+      <p class="muted">Бот <a href="https://t.me/FalconLogistic_bot">@FalconLogistic_bot</a> · канал <a href="https://t.me/+qJ8J_ZgM9Ck4ZGVi">FalconApp</a></p>
+      <table>
+        <thead><tr><th>Команда</th><th>Отчёт</th></tr></thead>
+        <tbody>
+          <tr><td><code>/utro</code></td><td>Сводка: выручка, клиенты ↑↓, долги, дефицит, мёртвый сток</td></tr>
+          <tr><td><code>/mom</code></td><td>Этот месяц vs прошлый</td></tr>
+          <tr><td><code>/top</code></td><td>Топ клиентов</td></tr>
+          <tr><td><code>/dolg</code></td><td>Дебиторка</td></tr>
+          <tr><td><code>/deficit</code></td><td>Дефицит</td></tr>
+          <tr><td><code>/mertvyy</code></td><td>Мёртвый сток</td></tr>
+          <tr><td><code>/sklady</code></td><td>Склады</td></tr>
+          <tr><td><code>/here</code></td><td>Привязать чат/канал к рассылке</td></tr>
+        </tbody>
+      </table>
+      <h3>Канал</h3>
+      <ol>
+        <li>Сделайте бота <strong>администратором</strong> с правом публиковать.</li>
+        <li>Напишите в канале <code>/here</code> или <code>/utro</code>.</li>
+        <li>Авторассылка утром около <strong>09:00</strong>.</li>
       </ol>
     </section>
 
     <section>
       <h2>Чек-лист проверки <span class="pill">для пользователя</span></h2>
-      <p class="muted">Отметьте пункты после проверки на <a href="https://falconapp.melnichuk.kz/">falconapp.melnichuk.kz</a> (лучше с телефона и с ПК).</p>
+      <p class="muted">Отметьте после проверки на сайте и в Telegram (ПК + телефон).</p>
       <ul class="check">
-        <li><label><input type="checkbox" /> В шапке статус <strong>1С онлайн</strong></label></li>
-        <li><label><input type="checkbox" /> Открываются папки номенклатуры, работает «хлебная крошка» назад</label></li>
-        <li><label><input type="checkbox" /> Поиск находит товар по части названия</label></li>
-        <li><label><input type="checkbox" /> Фильтры: склад, вид цены, «только с остатком»</label></li>
-        <li><label><input type="checkbox" /> В карточке товара видно фото (или понятное сообщение, если фото нет)</label></li>
-        <li><label><input type="checkbox" /> В карточке есть цена и остатки по складам</label></li>
-        <li><label><input type="checkbox" /> Штрихкод <code>4600987009506</code> открывает «Кувшин Аквафор-Престиж…»</label></li>
-        <li><label><input type="checkbox" /> Несуществующий код (например <code>0000000000000</code>) пишет, что не найдено</label></li>
-        <li><label><input type="checkbox" /> «В заказ» добавляет строку; на телефоне растёт бейдж на вкладке «Заказ»</label></li>
-        <li><label><input type="checkbox" /> Выбор партнёра показывает ИИН/БИН, задолженность, сумму покупок, дату</label></li>
-        <li><label><input type="checkbox" /> В корзине видно остаток на складе отгрузки; превышение количества подсвечивается</label></li>
-        <li><label><input type="checkbox" /> Создание заказа возвращает номер документа из 1С</label></li>
-        <li><label><input type="checkbox" /> На телефоне: карточки каталога, нижние вкладки, удобная карточка товара</label></li>
+        <li><label><input type="checkbox" /> Статус <strong>1С онлайн</strong></label></li>
+        <li><label><input type="checkbox" /> <strong>Обзор</strong>: KPI и графики остатков</label></li>
+        <li><label><input type="checkbox" /> <strong>Дашборды</strong>: хотя бы выручка и «месяц vs месяц»</label></li>
+        <li><label><input type="checkbox" /> Топ клиентов / ABC / дебиторка открываются</label></li>
+        <li><label><input type="checkbox" /> Мёртвый сток / дефицит / склады</label></li>
+        <li><label><input type="checkbox" /> Каталог: папки, поиск, фильтры, ★ избранное</label></li>
+        <li><label><input type="checkbox" /> Штрихкод <code>4600987009506</code> → Аквафор-Престиж</label></li>
+        <li><label><input type="checkbox" /> История <strong>Заказы</strong>: список и детали строк</label></li>
+        <li><label><input type="checkbox" /> Партнёр: ИИН/БИН, долг, график</label></li>
+        <li><label><input type="checkbox" /> Создание заказа в 1С + печать</label></li>
+        <li><label><input type="checkbox" /> Мобильные вкладки и бейдж корзины</label></li>
+        <li><label><input type="checkbox" /> Telegram: <code>/utro</code> у @FalconLogistic_bot</label></li>
+        <li><label><input type="checkbox" /> Канал FalconApp: бот-админ + <code>/here</code></label></li>
       </ul>
     </section>
 
     <section>
       <h2>Если что-то не работает</h2>
       <ul>
-        <li><strong>1С ошибка / API недоступен</strong> — нет связи с базой или сервисом; сообщите администратору.</li>
-        <li><strong>Нет фото</strong> — нужен опубликованный HTTP-сервис <code>falcon</code> в 1С (картинки).</li>
-        <li><strong>Штрихкод не находится</strong> — проверьте, что код есть в регистре штрихкодов 1С и сервис <code>/hs/falcon/barcode</code> опубликован.</li>
-        <li><strong>Камера не открывается</strong> — разрешите доступ в браузере или введите код вручную (нужен HTTPS).</li>
+        <li><strong>1С ошибка</strong> — связь с базой / OData; сообщите администратору.</li>
+        <li><strong>Нет фото</strong> — HTTP-сервис <code>falcon</code> в 1С.</li>
+        <li><strong>Штрихкод</strong> — регистр штрихкодов и <code>/hs/falcon/barcode</code>.</li>
+        <li><strong>Дашборд долго</strong> — первый запрос к 1С; дальше кэш ~5 мин.</li>
+        <li><strong>Бот молчит в канале</strong> — права администратора и команда <code>/here</code>.</li>
+        <li><strong>Камера</strong> — разрешение браузера или ввод вручную (HTTPS).</li>
       </ul>
     </section>
 
     <footer>
       Falcon Logistic · FalconApp ·
-      <a href="https://github.com/sania2007mav/falconapp-guide">репозиторий</a>
+      <a href="https://github.com/sania2007mav/falconapp-guide">репозиторий</a> ·
+      <a href="USER-CHECKLIST.md">чек-лист.md</a> ·
+      <a href="TELEGRAM-BOT.md">telegram.md</a>
     </footer>
   </div>
   <script>
-    // persist checklist in localStorage
     document.querySelectorAll('.check input').forEach((el, i) => {
-      const key = 'falcon_check_' + i;
+      const key = 'falcon_check_v2_' + i;
       el.checked = localStorage.getItem(key) === '1';
       el.addEventListener('change', () => localStorage.setItem(key, el.checked ? '1' : '0'));
     });
